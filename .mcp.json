@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "tracely-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}

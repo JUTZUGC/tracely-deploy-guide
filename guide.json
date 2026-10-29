@@ -1,0 +1,108 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "tracely",
+    "nameCn": "Tracely",
+    "repoName": "tracely-deploy-guide",
+    "oneLiner": "面向 AI Agent 的 trace 原生 CI/CD：评分、聚类失败、冻结回归测试并拦住退化的 PR",
+    "officialRepo": "https://github.com/jwuthri-cloud/Tracely-ai",
+    "officialDocs": "https://doc.tracely-ai.com",
+    "stars": "1.2k",
+    "license": "MIT",
+    "highlights": [
+      "一条命令起全栈：Web、后端、worker 一起跑",
+      "评估器：结构检查 + LLM judge，多输出类型",
+      "失败聚类：把相似失败归并成可处理的问题",
+      "回归门禁：失败固化成测试，拦住退化 PR",
+      "接入灵活：Python SDK 或任意 OTLP/HTTP",
+      "可自托管：Docker Compose，数据在自己机器"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供部署步骤、端口与常见问题。",
+    "webuiUrl": "http://127.0.0.1:3001",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-29",
+    "verification": [
+      [
+        "README Quickstart 确认 Docker Compose、demo profile、端口 3001 / 8000",
+        "已核对 2026-10-29"
+      ],
+      [
+        "README 确认 Python 3.10+ SDK 与 OTLP/HTTP 接入",
+        "已核对 2026-10-29"
+      ],
+      [
+        "未实测 docker compose 构建与启动",
+        "说明 2026-10-29"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-10-29"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-29"
+      ]
+    ],
+    "deploy": {
+      "type": "docker",
+      "steps": [
+        "git clone https://github.com/jwuthri-cloud/Tracely-ai.git",
+        "cd Tracely-ai",
+        "docker compose --profile demo up -d --build --wait",
+        "echo \"已启动：http://127.0.0.1:3001 （后端 8000）\""
+      ],
+      "stepsPs": [
+        "git clone https://github.com/jwuthri-cloud/Tracely-ai.git",
+        "Set-Location Tracely-ai",
+        "docker compose --profile demo up -d --build --wait",
+        "Write-Host \"已启动：http://127.0.0.1:3001 （后端 8000）\""
+      ],
+      "source": "https://github.com/jwuthri-cloud/Tracely-ai#quickstart"
+    },
+    "pitfalls": [
+      "docker compose 不存在：升级 Docker Desktop，确认是 v2 子命令",
+      "端口被占：用 TRACELY_WEB_PORT / TRACELY_BACKEND_PORT 改",
+      "构建失败：先 docker compose build 看具体服务日志",
+      "页面能开但没有数据：确认用了 --profile demo 并等 --wait 结束",
+      "重启后数据没了：检查 volume 是否被 down -v 清掉",
+      "SDK 打不进数据：确认 endpoint 指到后端 8000，且容器网络可达"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/tracely-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/tracely-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "Tracely",
+    "Tracely 部署",
+    "AI Agent 评测",
+    "trace 回归测试",
+    "LLM 评测 自托管",
+    "Agent CI/CD",
+    "tracely-ai 教程",
+    "Docker 自托管 评测",
+    "Tracely 自托管",
+    "tracely deploy guide"
+  ],
+  "topics": [
+    "ai-agents",
+    "observability",
+    "llm-evaluation",
+    "ci-cd",
+    "docker",
+    "tracely"
+  ]
+}
